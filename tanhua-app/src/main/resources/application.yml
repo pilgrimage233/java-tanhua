@@ -20,17 +20,17 @@ dubbo:    #dubbo配置
 
 tanhua:
   sms:
-    access-key: LTAI5t6rL4crEU47uX483JKz
-    secret: ZCxHdtyE8W203OYG9FqAiOIQAxJIMI
-    sign-name: 黑马Ys
-    template-code: SMS_199773239
+    access-key: 
+    secret: 
+    sign-name: 
+    template-code: 
   oss:
-    accessKey: LTAI5tG8yxAcTx3Nu8KKJ79K
-    secret: 1D18ilxPrWKfsyjcpF4GOR4NjD9hXk
-    endpoint: oss-cn-beijing.aliyuncs.com
-    bucketName: onlyu
-    url: https://onlyu.oss-cn-beijing.aliyuncs.com
+    accessKey: 
+    secret: 
+    endpoint: 
+    bucketName: 
+    url: 
   aip:
-    appId: 25071870
-    apiKey: nzgY6AiSPUUbsDS8hDeGcAbb
-    secretKey: l5WCuCYH9l1GoiI8dIaEGTGLS66LzuIv
+    appId: 
+    apiKey: 
+    secretKey: 
