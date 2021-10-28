@@ -1,0 +1,82 @@
+{
+  "groups": [
+    {
+      "name": "tanhua.aip",
+      "type": "com.itheima.autoconfig.face.AipFaceProperties",
+      "sourceType": "com.itheima.autoconfig.face.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.oss",
+      "type": "com.itheima.autoconfig.oss.OssProperties",
+      "sourceType": "com.itheima.autoconfig.oss.OssProperties"
+    },
+    {
+      "name": "tanhua.sms",
+      "type": "com.itheima.autoconfig.sms.SmsProperties",
+      "sourceType": "com.itheima.autoconfig.sms.SmsProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "tanhua.aip.api-key",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.face.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.aip.app-id",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.face.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.aip.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.face.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.oss.access-key",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.oss.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.oss.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.oss.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.oss.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.url",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.oss.OssProperties"
+    },
+    {
+      "name": "tanhua.sms.access-key",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.sms.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.sms.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.sign-name",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.sms.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.template-code",
+      "type": "java.lang.String",
+      "sourceType": "com.itheima.autoconfig.sms.SmsProperties"
+    }
+  ],
+  "hints": []
+}

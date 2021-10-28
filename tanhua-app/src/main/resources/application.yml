@@ -1,0 +1,36 @@
+server: #服务端口
+  port: 18087
+spring:
+  application:
+    name: tanhua-app
+  redis:  #redis配置
+    port: 6379
+    host: 127.0.0.1
+  cloud:  #nacos配置
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+dubbo:    #dubbo配置
+  registry:
+    address: spring-cloud://localhost
+  consumer:
+    check: false
+    timeout: 50000000
+    retries: 0
+
+tanhua:
+  sms:
+    access-key: LTAI5t6rL4crEU47uX483JKz
+    secret: ZCxHdtyE8W203OYG9FqAiOIQAxJIMI
+    sign-name: 黑马Ys
+    template-code: SMS_199773239
+  oss:
+    accessKey: LTAI5tG8yxAcTx3Nu8KKJ79K
+    secret: 1D18ilxPrWKfsyjcpF4GOR4NjD9hXk
+    endpoint: oss-cn-beijing.aliyuncs.com
+    bucketName: onlyu
+    url: https://onlyu.oss-cn-beijing.aliyuncs.com
+  aip:
+    appId: 25071870
+    apiKey: nzgY6AiSPUUbsDS8hDeGcAbb
+    secretKey: l5WCuCYH9l1GoiI8dIaEGTGLS66LzuIv
