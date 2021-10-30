@@ -6,6 +6,7 @@ import com.itheima.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -51,5 +52,23 @@ public class UserController {
         userManager.saveUserInfoBase(userInfo,token);
     }
     //完善用户头像信息
+    @PostMapping("/user/loginReginfo/head")
+    public ResponseEntity saveUserInfoHead(MultipartFile headPhoto, @RequestHeader("Authorization") String token) throws Exception{
+        //调用manger
+      return userManager.saveUserInfoHead(headPhoto,token);
+    }
+    //查询用户信息
+    @GetMapping("/users")
+    public ResponseEntity findUserInfoVo(Long userID,Long huanxinID, @RequestHeader("Authorization") String token){
+        //调用manger
+        if (userID!=null) {
+            return userManager.findUserInfoVo(userID);
+        }else if(huanxinID!=null){
+            return userManager.findUserInfoVo(huanxinID);
+        }else{
+            User user = userManager.findUserByToken(token);
+            return userManager.findUserInfoVo(user.getId());
+        }
+    }
 
 }

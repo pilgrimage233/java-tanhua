@@ -5,11 +5,14 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.itheima.autoconfig.face.AipFaceTemplate;
+import com.itheima.autoconfig.oss.OssTemplate;
 import com.itheima.autoconfig.sms.SmsProperties;
 import com.itheima.autoconfig.sms.SmsTemplate;
 import com.itheima.domain.db.User;
 import com.itheima.domain.db.UserInfo;
 import com.itheima.domain.vo.ErrorResult;
+import com.itheima.domain.vo.UserInfoVo;
 import com.itheima.service.UserInfoService;
 import com.itheima.service.UserService;
 import com.itheima.uitl.ConstantUtil;
@@ -20,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -133,6 +137,44 @@ public class UserManager {
         //对Redis的user对象进行续期
         stringRedisTemplate.opsForValue().set(ConstantUtil.USER_TOKEN+token,json,Duration.ofDays(7));
         return user;
+    }
+
+    @Autowired
+    private AipFaceTemplate aipFaceTemplate;
+
+    @Autowired
+    private OssTemplate ossTemplate;
+
+    //完善用户头像
+    public ResponseEntity saveUserInfoHead(MultipartFile headPhoto, String token) throws Exception {
+        //解析token获取user对象
+        User userByToken = findUserByToken(token);
+        //人脸识别
+        boolean detect = aipFaceTemplate.detect(headPhoto.getBytes());
+        if (!detect){
+            ResponseEntity.status(500).body(ErrorResult.faceError()); //反回非人脸错误信息
+        }
+        //上传图片到oss,并反回图片地址
+        String headPhotoUrl = ossTemplate.upload(headPhoto.getOriginalFilename(), headPhoto.getInputStream());
+        //封装信息到userinfo对象
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(userByToken.getId());
+        userInfo.setAvatar(headPhotoUrl);
+        userInfo.setCoverPic(headPhotoUrl);
+        //调用service更新
+        userInfoService.save(userInfo);
+        //无信息直接反回成功状态码
+        return ResponseEntity.ok(null);
+    }
+    //查询用户信息
+    public ResponseEntity findUserInfoVo(Long id) {
+        //根据userID调用service查询
+        UserInfo userInfo = userInfoService.findUserById(id);
+        //封装到userInfoVo
+        UserInfoVo userInfoVo = new UserInfoVo();
+        BeanUtil.copyProperties(userInfo,userInfoVo);
+
+        return ResponseEntity.ok(userInfoVo);
     }
 }
 
